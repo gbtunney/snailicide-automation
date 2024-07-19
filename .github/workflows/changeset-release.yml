@@ -3,7 +3,7 @@ name: Changeset Release
 on:
     push:
         branches:
-            -    'release-candidate*' # This matches any branch starting with 'release-candidate'
+            - 'release-candidate*' # This matches any branch starting with 'release-candidate'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
