@@ -41,14 +41,7 @@ const Configuration: UserConfig = {
                 'test',
             ],
         ],
-        'scope-enum': [
-            2,
-            'always',
-            [
-                'root',
-                'soundtrack-utilities',
-            ],
-        ],
+        'scope-enum': [2, 'always', ['root', 'soundtrack-utilities']],
     },
     prompt: {
         settings: { scopeEnumSeparator: ',', enableMultipleScopes: true },
