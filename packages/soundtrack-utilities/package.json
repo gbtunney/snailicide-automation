@@ -1,6 +1,6 @@
 {
     "name": "@gillian/soundtrack-utilities",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Soundtrack Utilities - convert audio, tracklists, id3tags, etc",
     "private": false,
     "type": "module",
