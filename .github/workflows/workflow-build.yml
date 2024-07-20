@@ -1,9 +1,9 @@
-name: Build DEMO
+name: 🐌 Snailicide
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
     build:
-        name: '🐌 Snailicide Build / Archive 🐌'
+        name: 'Build / Archive 🏗️'
         runs-on: ubuntu-latest
         steps:
             - run: echo 'Archive Snailicide Monorepo 🐌';

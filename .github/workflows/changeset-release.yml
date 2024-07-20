@@ -1,15 +1,14 @@
-name: Changeset Release
+name: 🐌 Snailicide Release
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
     push:
         branches:
-            - 'master' # This matches any branch starting with 'release-candidate'
-
+            - 'master'
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
     release:
-        name: '🐌 Snailicide Changeset Release 🐌'
+        name: 'Changeset 🚀'
         runs-on: ubuntu-latest
         permissions:
             contents: write
