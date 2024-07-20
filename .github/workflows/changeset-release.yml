@@ -15,6 +15,8 @@ jobs:
             contents: write
             pull-requests: write
             repository-projects: write
+        env:
+            HUSKY: 0
         steps:
             - name: Checkout Repo
               uses: actions/checkout@v3
@@ -25,6 +27,8 @@ jobs:
                   node-version: '20.11.1'
 
             - name: Install pnpm 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+              env:
+                  HUSKY: 0
               run: |
                   npm install -g pnpm
                   pnpm install
@@ -37,9 +41,11 @@ jobs:
 
             - name: Create Release Pull Request
               uses: changesets/action@v1
+
               with:
                   commit: 'release(root): this commit was created by changesets'
               env:
+                  HUSKY: 0
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Tag Versions
