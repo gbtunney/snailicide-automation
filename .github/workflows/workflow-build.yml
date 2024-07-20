@@ -2,7 +2,8 @@ name: Build DEMO
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-    archive:
+    build:
+        name: '🐌 Snailicide Build / Archive 🐌'
         runs-on: ubuntu-latest
         steps:
             - run: echo 'Archive Snailicide Monorepo 🐌';
@@ -20,8 +21,8 @@ jobs:
                   npm install -g pnpm
                   pnpm install --no-frozen-lockfile
 
-            - name: BUILD ALL PACKAGES
+            - name: Build, Lint and Unit Tests 🚨
               run: |
-                  pnpm run build && pnpm run fix && pnpm run check
+                  pnpm run build && pnpm run check && pnpm test
 
             - run: echo "🍏 This job's status is ${{ job.status }}."

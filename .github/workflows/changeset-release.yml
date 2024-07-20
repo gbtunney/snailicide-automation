@@ -1,5 +1,5 @@
 name: Changeset Release
-
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
     push:
         branches:
@@ -9,7 +9,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
     release:
-        name: Changeset Release
+        name: '🐌 Snailicide Changeset Release 🐌'
         runs-on: ubuntu-latest
         permissions:
             contents: write
@@ -18,7 +18,7 @@ jobs:
         env:
             HUSKY: 0
         steps:
-            - name: Checkout Repo
+            - name: Checkout Repo 🛎️
               uses: actions/checkout@v3
 
             - name: Setup Node.js environment 🛎️
@@ -26,29 +26,32 @@ jobs:
               with:
                   node-version: '20.11.1'
 
-            - name: Install pnpm 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+            - name: Install pnpm 🔧
               env:
                   HUSKY: 0
               run: |
                   npm install -g pnpm
                   pnpm install
 
-            - name: BUILD ALL PACKAGES
+            - name: Build, Lint and Unit Tests 🚨
               run: |
-                  pnpm run build && pnpm run fix && pnpm run check
+                  pnpm run build && pnpm run check && pnpm test
+            - run: |
                   git status
                   git branch
 
             - name: Create Release Pull Request
               uses: changesets/action@v1
-
               with:
                   commit: 'release(root): this commit was created by changesets'
               env:
                   HUSKY: 0
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Tag Versions
-              if: steps.changesets.outputs.hasChangesets == 'false'
+            - name: Tag Versions 🏷️
               # You can do something when a publish should happen.
-              run: pnpm changeset tag
+              run: |
+                  pnpm changeset tag
+                  git push origin --tags
+
+            - run: echo "🍏 This job's status is ${{ job.status }}."
