@@ -2,16 +2,19 @@
 
 # Protect master from accidental commits.
 
-BRANCH=$(git rev-parse --abbrev-ref HEAD)PROTECTED_BRANCHES="^(master|main)"
+BRANCH=$(git rev-parse --abbrev-ref HEAD) PROTECTED_BRANCHES="^(master|main)"
 
-echo -e "===\n>> Pre-commit Hook:: Checking BRANCH: $BRANCH"
+echo "===\n>> Pre-commit Hook:: Checking BRANCH: $BRANCH"
 
-if "$BRANCH" =~ "$PROTECTED_BRANCHES"; then
-    echo -e "\n🚫 Commit directly to BRANCH:  $BRANCH is not allowed!\n" && exit 1
+if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]; then
+    echo "\n🚫 Commit directly to BRANCH: $BRANCH is not allowed!\n" && exit 1
 fi
 
-if "$BRANCH" =~ "^[a-z]*(?:\/[a-z]+)*$"; then
-    echo -e "\n🚫 Branch name should not have any ascii and upper case letters, please rename your branch name\n" && exit 1
+if [[ "$BRANCH" =~ ^[a-z]*([/-][a-z]+)*$ ]]; then
+    echo "\n🐛 Branch name is valid!! \n"
+else
+    echo "\n🚫Branch name should be lowercase and NOT have any characters besides - or / :::: please rename your branch $BRANCH\n" && exit 1
+
 fi
 
 # if we are on DEVELOPMENT branch, in order to commit we need to lint all the files to test them before commiting.
