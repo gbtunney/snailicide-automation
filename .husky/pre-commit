@@ -19,7 +19,7 @@ fi
 
 # if we are on DEVELOPMENT branch, in order to commit we need to lint all the files to test them before commiting.
 
-if "$BRANCH" == 'development'; then
+if [[ "$BRANCH" == 'development' ]]; then
     echo -e "\n🚫 $BRANCH is DEVELOPMENT, checking + fixing ALL FILES  before commit \n"
     pnpm run prepare:all
     #re add the fixed files that were staged
