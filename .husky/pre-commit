@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # Protect master from accidental commits.
 

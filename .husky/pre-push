@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # Protect master from direct pushes.
 BRANCH=$(git rev-parse --abbrev-ref HEAD) PROTECTED_BRANCHES="^(master|main)"
