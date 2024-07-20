@@ -1,17 +1,18 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Protect master from accidental commits.
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD) PROTECTED_BRANCHES="^(master|main)"
 
-echo "===\n>> Pre-commit Hook:: Checking BRANCH: $BRANCH"
+echo "\n===\n>> Running in shell:: $SHELL"
+echo ">> Pre-commit Hook:: Checking BRANCH: $BRANCH\n===\n"
 
 if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]; then
     echo "\n🚫 Commit directly to BRANCH: $BRANCH is not allowed!\n" && exit 1
 fi
 
 if [[ "$BRANCH" =~ ^[a-z]*([/-][a-z]+)*$ ]]; then
-    echo "\n🐛 Branch name is valid!! \n"
+    echo "🐛 Branch name is valid!!"
 else
     echo "\n🚫Branch name should be lowercase and NOT have any characters besides - or / :::: please rename your branch $BRANCH\n" && exit 1
 
